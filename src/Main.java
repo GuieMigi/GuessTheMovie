@@ -30,6 +30,21 @@ public class Main {
         // Get a random movie from the movieListArray.
         String randomMovie = gameLogic.getRandomMovie(movieListArray);
         System.out.println(randomMovie);
+        // If the random movie has more than one word, split the movie title into the containing words.
+        if (randomMovie.contains(" ")) {
+            String[] words = randomMovie.split(" ");
+        }
+        // Split the random movie into a String array containing all the letters.
+        String[] randomMovieArray = randomMovie.split("(?!^)");
+        String displayedMovieTitle = "";
+
+        // Initialize the randomMovieStringArray to the size of the randomMovieArray and fill it with "_".
+        for (int i = 0; i < randomMovieArray.length; i++) {
+            randomMovieStringArray.add(i, randomMovieArray[i]);
+            displayedMovieTitle += " _";
+        }
+        System.out.println(randomMovieStringArray);
+        System.out.println(displayedMovieTitle);
     }
 /*
     private int[] checkEnteredLetter(){
