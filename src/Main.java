@@ -41,7 +41,14 @@ public class Main {
         // Initialize the randomMovieStringArray to the size of the randomMovieArray and fill it with "_".
         for (int i = 0; i < randomMovieArray.length; i++) {
             randomMovieStringArray.add(i, randomMovieArray[i]);
-            displayedMovieTitle += " _";
+            // Check if the position in the Array is a space.
+            if (randomMovieArray[i].equals(" ")) {
+                // Concatenate a space to separate the words.
+                displayedMovieTitle += " ";
+            } else {
+                // Concatenate a "_" for each letter of the movie title.
+                displayedMovieTitle += " _";
+            }
         }
         System.out.println(randomMovieStringArray);
         System.out.println(displayedMovieTitle);
