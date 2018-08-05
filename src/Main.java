@@ -7,5 +7,6 @@ public class Main {
         GameLogic gameLogic = new GameLogic();
         // Display a randomly generated movie title using "_" for each letter.
         System.out.println(gameLogic.getDisplayedMovieTitle());
+        boolean hasWon = false;
     }
 }

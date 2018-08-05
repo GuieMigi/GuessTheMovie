@@ -7,28 +7,10 @@ public class GameLogic {
 
     public String getDisplayedMovieTitle() {
 
-        File file = new File("movies.txt");
-        ArrayList<String> movieListArray = new ArrayList<>();
         ArrayList<String> randomMovieStringArray = new ArrayList<>();
-        boolean hasWon = false;
 
-        try {
-            Scanner scanner = new Scanner(file);
-
-            while (scanner.hasNextLine()) {
-                movieListArray.add(scanner.nextLine());
-            }
-            System.out.println(movieListArray.size());
-        } catch (FileNotFoundException exception) {
-            System.out.println("The file is not available.");
-        } catch (IndexOutOfBoundsException exception) {
-            System.out.println("There is no more room available inside the array.");
-        }
-
-        // Initialize a GameLogic object.
-        GameLogic gameLogic = new GameLogic();
-        // Get a random movie from the movieListArray.
-        String randomMovie = gameLogic.getRandomMovie(movieListArray);
+        // Get a random movie.
+        String randomMovie = getRandomMovieTitle();
         System.out.println(randomMovie);
         // If the random movie has more than one word, split the movie title into the containing words.
         if (randomMovie.contains(" ")) {
@@ -51,9 +33,35 @@ public class GameLogic {
             }
         }
         System.out.println(randomMovieStringArray);
-        System.out.println(displayedMovieTitle);
         return displayedMovieTitle;
     }
+
+    private String getRandomMovieTitle() {
+
+        File file = new File("movies.txt");
+        ArrayList<String> movieListArray = new ArrayList<>();
+
+        try {
+            // Declare and initialise a new scanner to read through the movie list.
+            Scanner scanner = new Scanner(file);
+
+            // Check if there is a next line in the file.
+            while (scanner.hasNextLine()) {
+                // Add the line to the Array.
+                movieListArray.add(scanner.nextLine());
+            }
+            System.out.println(movieListArray.size());
+            // Catch the FileNotFoundException.
+        } catch (FileNotFoundException exception) {
+            System.out.println("The file is not available.");
+            // Catch the IndexOutOfBoundsException.
+        } catch (IndexOutOfBoundsException exception) {
+            System.out.println("There is no more room available inside the array.");
+        }
+        // Return a randomly generated movie title.
+        return getRandomMovie(movieListArray);
+    }
+
 
     public String getRandomMovie(ArrayList<String> movieList) {
         return movieList.get((int) (Math.random() * movieList.size()));
