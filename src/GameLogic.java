@@ -5,6 +5,34 @@ import java.util.Scanner;
 
 public class GameLogic {
 
+    private String[] randomMovieArray = null;
+
+    public String checkUserInput(String randomMovie) {
+
+        // Check if the Array is null and then split the randomMovie.
+        if (randomMovieArray == null) {
+            randomMovieArray = randomMovie.split("(?!^)");
+        }
+        System.out.println(randomMovieArray.length);
+
+        //TODO: de creat o metodă ajutătoare care să folosească un loop pentru a afișa conținutul unui Array. Primește ca parametru un Array și returnează un string.
+
+        // Split the random movie into a String array containing all the letters.
+        String[] hiddenMovieTitleArray = getHiddenMovieTitleArray(randomMovieArray);
+
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+        for (int i = 0; i < randomMovieArray.length; i++) {
+            if (randomMovieArray[i].equals(String.valueOf(userInput))) {
+                randomMovieArray[i] = String.valueOf(userInput);
+            }
+        }
+        // TODO: de verificat dacă se actualizează Array-ul cu litera introdusă de user.
+
+        // TODO: de verificat de ce nu se afișează Stringul.
+        return getHiddenMovieTitle(hiddenMovieTitleArray);
+    }
+
     // This method takes as an input paramether the randomly generated movie title and returns the hidden movie title inside an Array.
     private String[] getHiddenMovieTitleArray(String[] randomMovieArray) {
 
@@ -38,7 +66,7 @@ public class GameLogic {
         return hiddenMovieTitle;
     }
 
-    private String getRandomMovieTitle() {
+    public String getRandomMovieTitle() {
 
         File file = new File("movies.txt");
         ArrayList<String> movieListArray = new ArrayList<>();
