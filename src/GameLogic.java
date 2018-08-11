@@ -20,6 +20,24 @@ public class GameLogic {
         return hiddenMovieTitleArray;
     }
 
+    // This method takes as an input paramether the hiddenMovieTitleArray and returns the hidden movie title as a String.
+    private String getHiddenMovieTitle(String[] hiddenMovieTitleArray) {
+
+        String hiddenMovieTitle = "";
+
+        for (int i = 0; i < hiddenMovieTitleArray.length; i++) {
+            // Check if the position in the Array is a space.
+            if (hiddenMovieTitleArray[i].equals(" ")) {
+                // Concatenate a space to separate the words.
+                hiddenMovieTitle += " ";
+            } else {
+                // Concatenate a "_" for each letter of the movie title.
+                hiddenMovieTitle += " _";
+            }
+        }
+        return hiddenMovieTitle;
+    }
+
     private String getRandomMovieTitle() {
 
         File file = new File("movies.txt");
