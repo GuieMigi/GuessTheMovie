@@ -5,10 +5,6 @@ import java.util.Scanner;
 
 public class GameLogic {
 
-    private String[] movieTitleLettersArray;
-    private String[] anonymisedMovieTitleArray = null;
-    private String displayedMovieString;
-
     private String getRandomMovieTitle() {
 
         File file = new File("movies.txt");
@@ -33,18 +29,6 @@ public class GameLogic {
         }
         // Return a randomly generated movie title.
         return getRandomMovie(movieListArray);
-    }
-
-    public String checkCorrectInput() {
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
-        for (int i = 0; i < movieTitleLettersArray.length; i++) {
-            if (anonymisedMovieTitleArray[i].contains(userInput)) {
-                anonymisedMovieTitleArray[i] = userInput;
-            }
-            displayedMovieString += anonymisedMovieTitleArray[i];
-        }
-        return userInput;
     }
 
     private String getRandomMovie(ArrayList<String> movieList) {

@@ -8,10 +8,5 @@ public class Main {
 
         // Display a randomly generated movie title using "_" for each letter.
         boolean hasWon = false;
-
-        Test test = new Test();
-        final String RANDOM_MOVIE = test.getRandomMovieTitle();
-        System.out.println(RANDOM_MOVIE);
-        System.out.println(test.checkUserInput(RANDOM_MOVIE));
     }
 }
