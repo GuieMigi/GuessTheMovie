@@ -5,36 +5,9 @@ import java.util.Scanner;
 
 public class GameLogic {
 
-    public String getDisplayedMovieTitle() {
-
-        ArrayList<String> randomMovieStringArray = new ArrayList<>();
-
-        // Get a random movie.
-        String randomMovie = getRandomMovieTitle();
-        System.out.println(randomMovie);
-        // If the random movie has more than one word, split the movie title into the containing words.
-        if (randomMovie.contains(" ")) {
-            String[] words = randomMovie.split(" ");
-        }
-        // Split the random movie into a String array containing all the letters.
-        String[] randomMovieArray = randomMovie.split("(?!^)");
-        String displayedMovieTitle = "";
-
-        // Initialize the randomMovieStringArray to the size of the randomMovieArray and fill it with "_".
-        for (int i = 0; i < randomMovieArray.length; i++) {
-            randomMovieStringArray.add(i, randomMovieArray[i]);
-            // Check if the position in the Array is a space.
-            if (randomMovieArray[i].equals(" ")) {
-                // Concatenate a space to separate the words.
-                displayedMovieTitle += " ";
-            } else {
-                // Concatenate a "_" for each letter of the movie title.
-                displayedMovieTitle += " _";
-            }
-        }
-        System.out.println(randomMovieStringArray);
-        return displayedMovieTitle;
-    }
+    private String[] movieTitleLettersArray;
+    private String[] anonymisedMovieTitleArray = null;
+    private String displayedMovieString;
 
     private String getRandomMovieTitle() {
 
@@ -62,8 +35,19 @@ public class GameLogic {
         return getRandomMovie(movieListArray);
     }
 
+    public String checkCorrectInput() {
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+        for (int i = 0; i < movieTitleLettersArray.length; i++) {
+            if (anonymisedMovieTitleArray[i].contains(userInput)) {
+                anonymisedMovieTitleArray[i] = userInput;
+            }
+            displayedMovieString += anonymisedMovieTitleArray[i];
+        }
+        return userInput;
+    }
 
-    public String getRandomMovie(ArrayList<String> movieList) {
+    private String getRandomMovie(ArrayList<String> movieList) {
         return movieList.get((int) (Math.random() * movieList.size()));
     }
 }
