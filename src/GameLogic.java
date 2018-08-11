@@ -5,6 +5,21 @@ import java.util.Scanner;
 
 public class GameLogic {
 
+    // This method takes as an input paramether the randomly generated movie title and returns the hidden movie title inside an Array.
+    private String[] getHiddenMovieTitleArray(String[] randomMovieArray) {
+
+        String[] hiddenMovieTitleArray = new String[randomMovieArray.length];
+
+        // The string that holds the correct number of words and the correct number of letters anonymised using "_", for the randomly generated movie.
+        String anonymisedMovieTitle = "";
+
+        // Initialize the hiddenMovieTitleArray to the size of the randomMovieArray and fill it with "_".
+        for (int i = 0; i < randomMovieArray.length; i++) {
+            hiddenMovieTitleArray[i] = randomMovieArray[i];
+        }
+        return hiddenMovieTitleArray;
+    }
+
     private String getRandomMovieTitle() {
 
         File file = new File("movies.txt");
