@@ -14,23 +14,47 @@ public class GameLogic {
             randomMovieArray = randomMovie.split("(?!^)");
         }
         System.out.println(randomMovieArray.length);
-
-        //TODO: de creat o metodă ajutătoare care să folosească un loop pentru a afișa conținutul unui Array. Primește ca parametru un Array și returnează un string.
+        System.out.println(arrayToString(randomMovieArray));
 
         // Split the random movie into a String array containing all the letters.
         String[] hiddenMovieTitleArray = getHiddenMovieTitleArray(randomMovieArray);
+        System.out.println(arrayToString(hiddenMovieTitleArray));
 
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
-        for (int i = 0; i < randomMovieArray.length; i++) {
-            if (randomMovieArray[i].equals(String.valueOf(userInput))) {
-                randomMovieArray[i] = String.valueOf(userInput);
+        // Check that the hiddenMovieTitleArray does not contain any "_".
+        for (int i = 0; i < hiddenMovieTitleArray.length; i++) {
+            // If there are no more "_" left inside the array then we break out of the loop.
+            if (!hiddenMovieTitleArray[i].equals("_")) {
+                // We change the hasWon boolean to "true" and break out of the loop.
+                Main main = new Main();
+                main.hasWon = true;
+                break;
+            } else {
+                // If it does then we can check if the user input can be found inside the array.
+                for (int j = 0; i < randomMovieArray.length; i++) {
+                    if (randomMovieArray[j].equals(String.valueOf(userInput))) {
+                        hiddenMovieTitleArray[j] = String.valueOf(userInput);
+                    }
+                }
             }
         }
         // TODO: de verificat dacă se actualizează Array-ul cu litera introdusă de user.
 
         // TODO: de verificat de ce nu se afișează Stringul.
+        System.out.println(getHiddenMovieTitle(hiddenMovieTitleArray));
         return getHiddenMovieTitle(hiddenMovieTitleArray);
+    }
+
+    // Helper method that converts an Array into a String to help with debugging.
+    private String arrayToString(String[] array) {
+        String arrayContent = "";
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != null) {
+                arrayContent += " " + array[i];
+            }
+        }
+        return arrayContent;
     }
 
     // This method takes as an input paramether the randomly generated movie title and returns the hidden movie title inside an Array.
@@ -38,12 +62,9 @@ public class GameLogic {
 
         String[] hiddenMovieTitleArray = new String[randomMovieArray.length];
 
-        // The string that holds the correct number of words and the correct number of letters anonymised using "_", for the randomly generated movie.
-        String anonymisedMovieTitle = "";
-
         // Initialize the hiddenMovieTitleArray to the size of the randomMovieArray and fill it with "_".
         for (int i = 0; i < randomMovieArray.length; i++) {
-            hiddenMovieTitleArray[i] = randomMovieArray[i];
+            hiddenMovieTitleArray[i] = "_";
         }
         return hiddenMovieTitleArray;
     }
